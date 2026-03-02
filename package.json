@@ -1,6 +1,6 @@
 {
   "name": "@forumone/twig-drupal-filters",
-  "version": "3.2.1",
+  "version": "3.2.2",
   "description": "Drupal's Twig filters, implemented for Twig.js",
   "main": "index.js",
   "files": [
@@ -27,8 +27,8 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "mocha": "^10.8.2",
-    "xo": "^0.60.0"
+    "mocha": "^11.7.5",
+    "xo": "^1.2.3"
   },
   "dependencies": {
     "object-keys": "^1.1.1",
