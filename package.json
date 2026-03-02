@@ -28,7 +28,7 @@
   "license": "MIT",
   "devDependencies": {
     "mocha": "^11.7.5",
-    "xo": "^0.60.0"
+    "xo": "^1.2.3"
   },
   "dependencies": {
     "object-keys": "^1.1.1",
