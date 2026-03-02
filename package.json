@@ -1,6 +1,6 @@
 {
   "name": "@forumone/twig-drupal-filters",
-  "version": "3.2.1",
+  "version": "3.2.2",
   "description": "Drupal's Twig filters, implemented for Twig.js",
   "main": "index.js",
   "files": [
