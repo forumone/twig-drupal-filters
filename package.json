@@ -1,6 +1,6 @@
 {
   "name": "@forumone/twig-drupal-filters",
-  "version": "3.2.2",
+  "version": "4.0.0",
   "description": "Drupal's Twig filters, implemented for Twig.js",
   "main": "index.js",
   "files": [
@@ -30,15 +30,21 @@
     "Kalamuna (http://kalamuna.com)"
   ],
   "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
   "devDependencies": {
     "@forumone/eslint-config-es5": "^4.0.0",
     "eslint": "^10.6.0",
     "globals": "^17.7.0",
     "mocha": "^11.7.5",
-    "prettier": "^3.9.4"
+    "prettier": "^3.9.4",
+    "twig": "^3.0.0"
   },
   "dependencies": {
-    "object-keys": "^1.1.1",
-    "twig": "^1.17.1"
+    "object-keys": "^1.1.1"
+  },
+  "peerDependencies": {
+    "twig": ">=3.0.0"
   }
 }
