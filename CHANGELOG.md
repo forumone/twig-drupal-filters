@@ -1,5 +1,12 @@
 # Change Log
 
+## 4.0.0 - 2026-07-08
+
+- Update Twig.js to `^3.0.0`
+- Declare `twig` as a `peerDependency` (in addition to `devDependency`) instead of a `dependency`, so consumers control the Twig instance and version
+- Require Node.js >= 22, matching Twig.js 3.0.0's engine requirement
+- Remove unused `.travis.yml`
+
 ## 3.2.0 - 2202-10-28
 
 - Update dependencies

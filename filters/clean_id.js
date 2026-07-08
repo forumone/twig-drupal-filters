@@ -12,7 +12,7 @@
 module.exports = function (id) {
   // Ensure a valid string is being passed.
   if (!id || !id.toLowerCase) {
-    return ''
+    return '';
   }
 
   const filter = {
@@ -20,21 +20,21 @@ module.exports = function (id) {
     _: '-',
     '[': '-',
     ']': '',
-  }
+  };
 
-  id = id.toLowerCase().replace(
+  let cleaned = id.toLowerCase().replace(
     new RegExp(
       Object.keys(filter)
         .map(function (value) {
-          return `(${value.replace(/[\\?*+|.^${}[\]()]/g, '\\$&')})`
+          return `(${value.replace(/[\\?*+|.^${}[\]()]/g, '\\$&')})`;
         })
         .join('|'),
-      'g',
+      'g'
     ),
     function (substring) {
-      return filter[substring]
-    },
-  )
+      return filter[substring];
+    }
+  );
 
   // As defined in http://www.w3.org/TR/html4/types.html#type-name, HTML IDs can
   // only contain letters, digits ([0-9]), hyphens ("-"), underscores ("_"),
@@ -42,9 +42,9 @@ module.exports = function (id) {
   // list. Note that the CSS spec doesn't allow colons or periods in identifiers
   // (http://www.w3.org/TR/CSS21/syndata.html#characters), so we strip those two
   // characters as well.
-  id = id.replace(/[^A-Za-z0-9\-_]/g, '') // eslint-disable-line unicorn/better-regex
+  cleaned = cleaned.replace(/[^A-Za-z0-9-_]/g, '');
 
   // Removing multiple consecutive hyphens.
-  id = id.replace(/-+/g, '-')
-  return id
-}
+  cleaned = cleaned.replace(/-+/g, '-');
+  return cleaned;
+};

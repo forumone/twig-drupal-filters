@@ -1,4 +1,4 @@
-const objectKeys = require('object-keys')
+const objectKeys = require('object-keys');
 
 /**
  * Removes child elements from a copy of the original array.
@@ -17,20 +17,20 @@ const objectKeys = require('object-keys')
  *   The filtered renderable array.
  */
 module.exports = function (element) {
-  let filteredElement = {}
+  const filteredElement = {};
 
   if (!element) {
-    return []
+    return [];
   }
 
-  let args = Array.prototype.slice.call(arguments, 1)
+  const args = Array.prototype.slice.call(arguments, 1);
   if (args[0]) {
-    for (let name of objectKeys(element)) {
+    for (const name of objectKeys(element)) {
       if (!args[0].includes(name)) {
-        filteredElement[name] = element[name]
+        filteredElement[name] = element[name];
       }
     }
   }
 
-  return filteredElement
-}
+  return filteredElement;
+};

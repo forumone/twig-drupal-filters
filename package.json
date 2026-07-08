@@ -1,6 +1,6 @@
 {
   "name": "@forumone/twig-drupal-filters",
-  "version": "3.2.2",
+  "version": "4.0.0",
   "description": "Drupal's Twig filters, implemented for Twig.js",
   "main": "index.js",
   "files": [
@@ -14,7 +14,11 @@
   },
   "scripts": {
     "test": "mocha --reporter spec",
-    "posttest": "xo --no-esnext --no-semicolon --global=it --global=describe"
+    "posttest": "eslint .",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prettier": "prettier --check .",
+    "prettier:fix": "prettier --write ."
   },
   "keywords": [
     "Drupal",
@@ -26,24 +30,21 @@
     "Kalamuna (http://kalamuna.com)"
   ],
   "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
   "devDependencies": {
+    "@forumone/eslint-config-es5": "^4.0.0",
+    "eslint": "^10.6.0",
+    "globals": "^17.7.0",
     "mocha": "^11.7.5",
-    "xo": "^1.2.3"
+    "prettier": "^3.9.4",
+    "twig": "^3.0.0"
   },
   "dependencies": {
-    "object-keys": "^1.1.1",
-    "twig": "^1.17.1"
+    "object-keys": "^1.1.1"
   },
-  "xo": {
-    "rules": {
-      "unicorn/filename-case": 0,
-      "unicorn/prefer-module": 0,
-      "import/extensions": 0,
-      "prefer-const": 0,
-      "prefer-arrow-callback": 0,
-      "unicorn/no-array-for-each": 0,
-      "object-shorthand": 0
-    },
-    "space": 2
+  "peerDependencies": {
+    "twig": ">=3.0.0"
   }
 }

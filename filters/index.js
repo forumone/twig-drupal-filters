@@ -1,14 +1,14 @@
-const trans = require('./trans')
+const trans = require('./trans');
 
 module.exports = {
   t: trans,
-  trans: trans,
+  trans,
   placeholder: trans,
   without: require('./without'),
-  clean_class: require('./clean_class'), // eslint-disable-line camelcase
-  clean_id: require('./clean_id'), // eslint-disable-line camelcase
+  clean_class: require('./clean_class'),
+  clean_id: require('./clean_id'),
   render: trans,
-  format_date: trans, // eslint-disable-line camelcase
-  drupal_escape: require('./drupal_escape'), // eslint-disable-line camelcase
-  safe_join: require('./safe_join'), // eslint-disable-line camelcase
-}
+  format_date: trans,
+  drupal_escape: require('./drupal_escape'),
+  safe_join: require('./safe_join'),
+};
