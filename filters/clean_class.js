@@ -13,20 +13,6 @@
  *
  * @see \Drupal\Component\Utility\Html::getClass()
  */
-module.exports = function (string) {
-  let classes = {}
-
-  let identifier = String(string)
-
-  return (function () {
-    if (!Object.prototype.hasOwnProperty.call(classes, identifier)) {
-      classes[identifier] = cleanCssIdentifier(identifier.toLowerCase())
-    }
-
-    return classes[identifier]
-  })()
-}
-
 /**
  * Prepares a string for use as a CSS identifier (element, class, or ID name).
  *
@@ -46,43 +32,43 @@ module.exports = function (string) {
  * @see \Drupal\Component\Utility\Html::cleanCssIdentifier()
  */
 function cleanCssIdentifier(identifier, filter) {
-  if (typeof filter === 'undefined') {
-    filter = {
-      ' ': '-',
-      _: '-',
-      '/': '-',
-      '[': '-',
-      ']': '',
-    }
-  }
+  const replacements = filter || {
+    ' ': '-',
+    _: '-',
+    '/': '-',
+    '[': '-',
+    ']': '',
+  };
+
+  let cleaned = identifier;
 
   // In order to keep '__' to stay '__' we first replace it with a different
   // placeholder after checking that it is not defined as a filter.
-  let doubleUnderscoreReplacements = 0
-  if (!Object.prototype.hasOwnProperty.call(filter, '__')) {
-    identifier = identifier.replace(/__/g, function () {
-      doubleUnderscoreReplacements += 1
-      return '##'
-    })
+  let doubleUnderscoreReplacements = 0;
+  if (!Object.prototype.hasOwnProperty.call(replacements, '__')) {
+    cleaned = cleaned.replace(/__/g, function () {
+      doubleUnderscoreReplacements += 1;
+      return '##';
+    });
   }
 
-  identifier = identifier.replace(
+  cleaned = cleaned.replace(
     new RegExp(
-      Object.keys(filter)
+      Object.keys(replacements)
         .map(function (value) {
-          return '(' + value.replace(/[\\?*+|.^${}[\]()]/g, '\\$&') + ')'
+          return '(' + value.replace(/[\\?*+|.^${}[\]()]/g, '\\$&') + ')';
         })
         .join('|'),
-      'g',
+      'g'
     ),
     function (substring) {
-      return filter[substring]
-    },
-  )
+      return replacements[substring];
+    }
+  );
   // Replace temporary placeholder '##' with '__' only if the original
   // identifier contained '__'.
   if (doubleUnderscoreReplacements > 0) {
-    identifier = identifier.replace(/##/g, '__')
+    cleaned = cleaned.replace(/##/g, '__');
   }
 
   // Valid characters in a CSS identifier are:
@@ -93,12 +79,26 @@ function cleanCssIdentifier(identifier, filter) {
   // - 0-9 (U+0061 - U+007A)
   // - ISO 10646 characters U+00A1 and higher
   // We strip out any character not in the above list.
-  identifier = identifier.replace(
-    /(?:[\0-,./:-@[-^`{-\u00A0]|[\uD800-\uDBFF][\uDC00-\uDFFF])/g, // eslint-disable-line unicorn/better-regex
-    '',
-  )
+  cleaned = cleaned.replace(
+    /(?:[\0-,./:-@[-^`{-\u00A0]|[\uD800-\uDBFF][\uDC00-\uDFFF])/g,
+    ''
+  );
   // Identifiers cannot start with a digit, two hyphens, or a hyphen followed by a digit.
   // N.b.: This doesn't match the logic from core exactly, but the result is the same.
-  identifier = identifier.replace(/^\d/g, '_').replace(/^(-\d)|^(--)/g, '__')
-  return identifier
+  cleaned = cleaned.replace(/^\d/g, '_').replace(/^(-\d)|^(--)/g, '__');
+  return cleaned;
 }
+
+module.exports = function (string) {
+  const classes = {};
+
+  const identifier = String(string);
+
+  return (function () {
+    if (!Object.prototype.hasOwnProperty.call(classes, identifier)) {
+      classes[identifier] = cleanCssIdentifier(identifier.toLowerCase());
+    }
+
+    return classes[identifier];
+  })();
+};

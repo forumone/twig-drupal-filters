@@ -6,15 +6,15 @@ Twig.js implementations of Drupal's Twig functions and filters. Most of these ar
 
 ## Usage
 
-``` javascript
-var Twig = require('twig')
-var twigDrupal = require('twig-drupal-filters')
+```javascript
+var Twig = require('twig');
+var twigDrupal = require('twig-drupal-filters');
 
 // Add the filters to Drupal.
 twigDrupal(Twig);
 ```
 
-``` twig
+```twig
 {{ 'Hello World!'|clean_id }}
 ```
 
@@ -37,8 +37,8 @@ A comprehensive list of the filters is [available here](http://www.opin.ca/en/ar
 
 ### Functions
 
--   link
--   active_theme*
--   attach_library*
+- link
+- active_theme*
+- attach_library*
 
-_*These are dummy functions that don't do anything except keep Twig.js compilation from breaking when these Drupal-specific functions are used in Drupal Twig templates._
+_\*These are dummy functions that don't do anything except keep Twig.js compilation from breaking when these Drupal-specific functions are used in Drupal Twig templates._

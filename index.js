@@ -4,19 +4,19 @@
  * @param {Twig} twigInstance The instance of Twig to modify.
  */
 module.exports = function (twigInstance) {
-  const filters = require('./filters')
-  for (let filterName in filters) {
+  const filters = require('./filters');
+  for (const filterName in filters) {
     if (filters[filterName]) {
-      let filter = filters[filterName]
-      twigInstance.extendFilter(filterName, filter)
+      const filter = filters[filterName];
+      twigInstance.extendFilter(filterName, filter);
     }
   }
 
-  const functions = require('./functions')
-  for (let functionName in functions) {
+  const functions = require('./functions');
+  for (const functionName in functions) {
     if (functions[functionName]) {
-      let func = functions[functionName]
-      twigInstance.extendFunction(functionName, func)
+      const func = functions[functionName];
+      twigInstance.extendFunction(functionName, func);
     }
   }
-}
+};

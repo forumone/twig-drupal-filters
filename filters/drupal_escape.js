@@ -1,5 +1,5 @@
-const twig = require('twig')
+const twig = require('twig');
 
 module.exports = function () {
-  return Reflect.apply(twig.filters.escape, null, arguments)
-}
+  return Reflect.apply(twig.filters.escape, null, arguments);
+};

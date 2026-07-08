@@ -1,13 +1,13 @@
-const activeTheme = require('./active_theme')
-const link = require('./link')
+const activeTheme = require('./active_theme');
+const link = require('./link');
 
 module.exports = {
-  attach_library: require('./attach_library'), // eslint-disable-line camelcase
-  render_var: activeTheme, // eslint-disable-line camelcase
+  attach_library: require('./attach_library'),
+  render_var: activeTheme,
   url: activeTheme,
-  file_url: activeTheme, // eslint-disable-line camelcase
-  active_theme_path: activeTheme, // eslint-disable-line camelcase
-  active_theme: activeTheme, // eslint-disable-line camelcase
+  file_url: activeTheme,
+  active_theme_path: activeTheme,
+  active_theme: activeTheme,
   path: activeTheme,
-  link: link,
-}
+  link,
+};
