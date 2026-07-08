@@ -163,6 +163,79 @@ describe('twig-drupal', function () {
     done()
   })
 
+  /**
+   * Tests the drupal_escape filter.
+   */
+  it('should use the drupal_escape filter', function (done) {
+    let template = twig({
+      data: '{{ value|drupal_escape }}',
+    })
+    let output = template.render({value: '<script>alert("xss")</script>'})
+    assert.strictEqual(output, '&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;')
+    done()
+  })
+
+  /**
+   * Tests the safe_join filter.
+   */
+  it('should use the safe_join filter', function (done) {
+    let template = twig({
+      data: '{{ value|safe_join(", ") }}',
+    })
+    let output = template.render({value: ['one', 'two', 'three']})
+    assert.strictEqual(output, 'one, two, three')
+    done()
+  })
+
+  /**
+   * Tests the dummy_passthrough filter.
+   */
+  it('should use the dummy_passthrough filter', function (done) {
+    let template = twig({
+      data: '{{ value|placeholder }}',
+    })
+    let output = template.render({value: 'unchanged value'})
+    assert.strictEqual(output, 'unchanged value')
+    done()
+  })
+
+  /**
+   * Tests the trans filter (aliased as t, render, and format_date).
+   */
+  it('should use the trans filter', function (done) {
+    let template = twig({
+      data: '{{ value|t }}',
+    })
+    let output = template.render({value: 'Hello world'})
+    assert.strictEqual(output, 'Hello world')
+    done()
+  })
+
+  /**
+   * Tests the active_theme function (also aliased as render_var, url,
+   * file_url, active_theme_path, and path).
+   */
+  it('should use the active_theme function', function (done) {
+    let template = twig({
+      data: '{{ active_theme() }}',
+    })
+    let output = template.render({})
+    assert.strictEqual(output, '')
+    done()
+  })
+
+  /**
+   * Tests the attach_library function.
+   */
+  it('should use the attach_library function', function (done) {
+    let template = twig({
+      data: 'Before[{{ attach_library("mymodule/mylibrary") }}]After',
+    })
+    let output = template.render({})
+    assert.strictEqual(output, 'Before[]After')
+    done()
+  })
+
   it('should create a link', function (done) {
     let template = twig({
       data: 'Visit my {{ link(title, url, attributes) }}!',
